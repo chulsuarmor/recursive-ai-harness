@@ -72,7 +72,7 @@ recursive-ai-harness/
   examples/
     model_garden_pseudocode.py           — self-evolving rule promotion
     ralph_loop_pseudocode.sh             — recursive verification loop
-    squirrel_ball_pseudocode.md          — mandatory reading enforcement
+    squirrel_cheek_pseudocode.md          — mandatory reading enforcement
   PUSH_COMMANDS.md                       — this file
   .gitignore                             — standard Python + Node ignores
   LICENSE                                — MIT

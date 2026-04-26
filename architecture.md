@@ -15,7 +15,7 @@
                        │
                        ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                   Squirrel Ball Hook                            │
+│                   Squirrel Cheek Hook                            │
 │  PostToolUse check — before first Edit/Write:                   │
 │    [1] CLAUDE.md (compressed index < 30 lines)                  │
 │    [2] mistakes.md last 10 entries                              │
@@ -125,7 +125,7 @@ Instruction bloat            │ Model Garden
   Long rule file ignored     │   — short promoted rules only
   entirely                   │   — CLAUDE.md kept < 30 lines
                              │
-Invisible failure            │ Squirrel Ball (M rule enforcement)
+Invisible failure            │ Squirrel Cheek (M rule enforcement)
   Silent None returns,       │   — mandatory read of silent failure
   blank screens, no logs     │     prevention rule before every write
 ```
@@ -137,9 +137,9 @@ Invisible failure            │ Squirrel Ball (M rule enforcement)
 | File | Owner | Updated By | Read By |
 |---|---|---|---|
 | `CLAUDE.md` | Harness | Model Garden (proposals) | All agents |
-| `mistakes.md` | Project | Every Worker (at end) | All agents (Squirrel Ball) |
+| `mistakes.md` | Project | Every Worker (at end) | All agents (Squirrel Cheek) |
 | `NEXT_SESSION_PROMPT.md` | Project | Handoff step | Next session only |
-| `FALSE_PASS_REGISTRY.md` | Audit teams | After each false PASS | All agents (Squirrel Ball) |
+| `FALSE_PASS_REGISTRY.md` | Audit teams | After each false PASS | All agents (Squirrel Cheek) |
 | `model_garden_proposals.md` | Model Garden | Garden scan | Human reviewer |
 | `counts/{worker_id}.count` | CT review | CT second review step | CT second review step |
 
@@ -149,7 +149,7 @@ Invisible failure            │ Squirrel Ball (M rule enforcement)
 
 ```
 Spawn Worker        →  0:00
-Squirrel Ball check →  0:01
+Squirrel Cheek check →  0:01
 3 Parallel auditors →  0:03 — 0:06
 CT second review    →  0:06 — 0:07
 Model Garden scan   →  0:07 — 0:08

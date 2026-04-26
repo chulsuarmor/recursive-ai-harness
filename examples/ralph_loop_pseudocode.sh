@@ -7,7 +7,7 @@
 # Phases:
 #   Phase 0  — environment check + lock acquisition
 #   Phase 1  — Worker spawn (one deliverable per cycle)
-#   Phase 2  — Squirrel Ball hook verification
+#   Phase 2  — Squirrel Cheek hook verification
 #   Phase 3  — 3 parallel auditors
 #   Phase 4  — CT second review + 5-reject gate
 #   Phase 5  — Model Garden scan
@@ -48,8 +48,8 @@ phase_1_worker_spawn() {
     echo "WORKER_OUTPUT_PATH=output/deliverable_$(date +%s).txt"
 }
 
-# ── Phase 2: Squirrel Ball verification ───────────────────────────────
-phase_2_squirrel_ball() {
+# ── Phase 2: Squirrel Cheek verification ───────────────────────────────
+phase_2_squirrel_cheek() {
     local worker_log="$1"
     echo "[Phase 2] Checking mandatory reads in worker log..."
     local required_reads=("CLAUDE.md" "mistakes.md" "FALSE_PASS_REGISTRY.md" "skills/INDEX.md")
@@ -160,8 +160,8 @@ main() {
 
         phase_1_worker_spawn "$task_file" > "$worker_log" 2>&1
 
-        phase_2_squirrel_ball "$worker_log" || {
-            echo "[LOOP] Squirrel Ball FAIL. Requeueing task."
+        phase_2_squirrel_cheek "$worker_log" || {
+            echo "[LOOP] Squirrel Cheek FAIL. Requeueing task."
             phase_7_loop_control
             continue
         }

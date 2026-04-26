@@ -1,8 +1,8 @@
-# Squirrel Ball — Mandatory Reading Enforcement
+# Squirrel Cheek — Mandatory Reading Enforcement
 
 ## Overview
 
-The Squirrel Ball protocol enforces that every spawned Worker agent reads
+The Squirrel Cheek protocol enforces that every spawned Worker agent reads
 a specific set of files before taking any write action. Named for the
 compulsive pre-action collection behavior: you must gather before you act.
 
@@ -72,7 +72,7 @@ def spawn_worker(task: dict) -> str:
 The `PostToolUse` hook verifies reads occurred before any write:
 
 ```python
-# .claude/hooks/squirrel_ball_check.py
+# .claude/hooks/squirrel_cheek_check.py
 # Called by PostToolUse hook after every tool invocation.
 
 import json
@@ -106,7 +106,7 @@ def check(hook_input: dict) -> dict:
     if missing:
         return {
             "action": "block",
-            "reason": f"Squirrel Ball FAIL: mandatory reads missing: {missing}. "
+            "reason": f"Squirrel Cheek FAIL: mandatory reads missing: {missing}. "
                       f"Read these files before any Edit/Write.",
         }
 
@@ -120,7 +120,7 @@ def check(hook_input: dict) -> dict:
 At agent exit, verify the checklist was confirmed:
 
 ```python
-# .claude/hooks/squirrel_ball_exit_check.py
+# .claude/hooks/squirrel_cheek_exit_check.py
 # Called by SubagentStop hook when a sub-agent finishes.
 
 def check(hook_input: dict) -> dict:
@@ -130,7 +130,7 @@ def check(hook_input: dict) -> dict:
     if "SQUIRREL BALL CHECKLIST" not in output_text:
         return {
             "action": "warn",
-            "reason": "Agent exited without confirming Squirrel Ball checklist. "
+            "reason": "Agent exited without confirming Squirrel Cheek checklist. "
                       "Output may be invalid.",
         }
 
@@ -138,7 +138,7 @@ def check(hook_input: dict) -> dict:
     if unchecked > 0:
         return {
             "action": "warn",
-            "reason": f"Squirrel Ball: {unchecked} checklist items not confirmed.",
+            "reason": f"Squirrel Cheek: {unchecked} checklist items not confirmed.",
         }
 
     return {"action": "continue"}
@@ -149,7 +149,7 @@ def check(hook_input: dict) -> dict:
 ## Why This Works
 
 The key insight is that agents are not lazy — they are stateless. Every new
-agent spawn starts with no knowledge of previous failures. The Squirrel Ball
+agent spawn starts with no knowledge of previous failures. The Squirrel Cheek
 protocol ensures the most recent failure patterns are always injected into
 context before the agent can act. The hooks ensure the injection actually
 happened rather than being skipped.

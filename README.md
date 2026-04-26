@@ -46,7 +46,7 @@ def scan_audit_patterns(mistakes_dir):
 
 In practice, three rules promoted automatically after 34 cycles:
 
-- **SMILES parsing defense** (L): 45 occurrences across 8 domains — mol is None check missed, causing invisible failures in structure rendering.
+- **input validation defense** (L): 45 occurrences across 8 domains — mol is None check missed, causing invisible failures in structure rendering.
 - **Silent failure prevention** (M): 35 occurrences — `except: pass` patterns, `None` returns without logging, blank UI states with no traceable error.
 - **Type guard requirement** (N): 27 occurrences — external/AI data assumed to be `dict` when it was `str`, causing `AttributeError` in student-facing screens.
 
@@ -96,11 +96,11 @@ In practice: sessions resume correctly without re-explanation approximately 95% 
 
 ---
 
-### 3. Squirrel Ball — Mandatory Reading Enforcement
+### 3. Squirrel Cheek — Mandatory Reading Enforcement
 
 The core idea: if reading is voluntary, it will be skipped. Make it structural.
 
-Before any Worker agent takes action, it must read five specific files. This is called the Squirrel Ball protocol (named for the compulsive hoarding behavior — you must collect before you act).
+Before any Worker agent takes action, it must read five specific files. This is called the Squirrel Cheek protocol (named for the compulsive hoarding behavior — you must collect before you act).
 
 The five mandatory reads are:
 1. `CLAUDE.md` compressed index (the short version, under 30 lines)
@@ -162,7 +162,7 @@ User Request
     v
 Worker agent
   [reads: CLAUDE.md + mistakes.md + FP registry + skills]
-  [Squirrel Ball hook verifies before first write]
+  [Squirrel Cheek hook verifies before first write]
     |
     v
 3 Audit Teams (parallel: theory / gui / integration)
@@ -192,7 +192,7 @@ The four systems address the four failure modes directly:
 | Session amnesia | Recursive Session Handoff |
 | Rubber-stamp audits | Per-Deliverable 5-Reject Gate |
 | Instruction bloat | Model Garden (short promoted rules only) |
-| Invisible failure | Squirrel Ball (mandatory read of M rule: silent failure prevention) |
+| Invisible failure | Squirrel Cheek (mandatory read of M rule: silent failure prevention) |
 
 ---
 
@@ -218,7 +218,7 @@ The following figures are from a single project using this harness over approxim
 
 **The 5-reject threshold is empirical.** The value 5 was derived by observation, not from optimal stopping theory or a formal model of auditor reliability. Different projects with different auditor quality distributions will need different thresholds.
 
-**Hooks still rely partly on prompt-level instruction.** The Squirrel Ball `PostToolUse` hook checks that reads occurred, but the check itself is implemented as a Python script called by the hook, not as a hard constraint in the runtime. A sufficiently confused agent could bypass it.
+**Hooks still rely partly on prompt-level instruction.** The Squirrel Cheek `PostToolUse` hook checks that reads occurred, but the check itself is implemented as a Python script called by the hook, not as a hard constraint in the runtime. A sufficiently confused agent could bypass it.
 
 **The handoff file degrades if sessions are very long.** The 8-section template assumes a session covers roughly 5-20 tracked changes. Sessions covering 50+ changes produce handoff files that are technically correct but cognitively overwhelming for the next session to process.
 
@@ -228,7 +228,7 @@ The following figures are from a single project using this harness over approxim
 
 ## Reference Implementation
 
-This pattern was developed while building a desktop chemistry visualization application. The harness code is generic; the chemistry-specific parts are in separate modules that the harness does not touch.
+This pattern was developed while building a complex desktop scientific application. The harness code is generic; the domain-specific parts are in separate modules that the harness does not touch.
 
 The pseudocode examples in `examples/` illustrate each system independently. The `architecture.md` file contains the ASCII flow diagram.
 
@@ -238,7 +238,7 @@ To adapt to your project:
 3. Create `NEXT_SESSION_PROMPT.md` with the 8-section template
 4. Implement the Model Garden scanner (see `examples/model_garden_pseudocode.py`)
 5. Add the 5-reject gate to your audit flow (see `examples/ralph_loop_pseudocode.sh`)
-6. Enforce mandatory reads at Worker spawn time (see `examples/squirrel_ball_pseudocode.md`)
+6. Enforce mandatory reads at Worker spawn time (see `examples/squirrel_cheek_pseudocode.md`)
 
 ---
 
